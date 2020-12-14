@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  margin: 0 auto;
+  max-width: 850px;
+  padding: 16px;
+}
+
+mat-form-field {
+  margin-right: 30px;
+  padding: 10px 0;
+  width: 40%;
+}
+
+mat-card {
+    padding: 30px;
+}
+
+
+.total-card {
+    position: fixed;
+    top: 195px;
+    right: 40px;
+    max-width: 300px;
+}
+
+.mat-card-header-text {
+    margin: 0;
+}
+
+.new-dependent {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.header-dependents {
+  font-size: 18px;
+  padding-top: 20px;
+  font-weight: 500;
+}
+
+img {
+  position: absolute;
+  bottom: 0;
+  right: -115px;
+  height: 100%;
+  z-index: -1;
+}

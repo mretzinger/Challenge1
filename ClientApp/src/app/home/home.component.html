@@ -1,0 +1,122 @@
+<h1>Welcome!</h1>
+<p>
+  Please enter Employees' information to calculate expected yearly costs.
+</p>
+<mat-card class="total-card">
+  <mat-card-header>
+    <mat-card-title>Total Benefit Cost: </mat-card-title>
+  </mat-card-header>
+  {{ employees.value | json }}
+</mat-card>
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Employee
+    </mat-panel-title>
+    <mat-panel-description>
+      Please enter an Employee's information to calculate expected yearly costs.
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <mat-form-field>
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly>
+  </mat-form-field>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-expansion-panel>
+<mat-card class="employee-card">
+  <mat-card-header>
+    <mat-card-title>Employee Information: </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="employees" (ngSubmit)="updateEmployee(employees)" novalidate>
+      <div *ngFor="let team of employees.get('employees').controls;
+             let employeeIndex = index" [formGroup]="employee">
+        <div>
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" [formControl]="employee.get('firstName')" />
+            <mat-error *ngIf="firstName.invalid">Must add a valid name</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" [formControl]="employee.get('lastName')" />
+            <mat-error *ngIf="firstName.invalid">Must add a valid name</mat-error>
+          </mat-form-field>
+        </div>
+        <div *ngIf="employee.controls['dependents'].length > 0">
+          <mat-divider [inset]="true"></mat-divider>
+          <div class="header-dependents">Dependents:</div>
+        </div>
+        <div *ngFor="let dependent of employee.controls['dependents'].controls; let dependentIndex = index" [formGroup]="dependent">
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" [formControl]="dependent.get('firstName')" />
+            <mat-error *ngIf="firstName.invalid">Must add a valid name</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" [formControl]="dependent.get('lastName')" />
+            <mat-error *ngIf="firstName.invalid">Must add a valid name</mat-error>
+          </mat-form-field>
+          <button mat-icon-button (click)="deleteDependent(dependent)" color="warn"><mat-icon>delete</mat-icon></button>
+        </div>
+        <button mat-raised-button (click)="addNewDependent()" class="new-dependent" color="primary">
+          <mat-icon>add</mat-icon>
+          Add a Dependent
+        </button>
+      </div>
+
+      <!--<button  [disabled]="!myForm.valid">Caluclate Benefits</button>-->
+      <button mat-raised-button type="submit">Save</button>
+    </form>
+    <!--<form [formGroup]="employee" (ngSubmit)="updateEmployee(employee)" novalidate>-->
+    <!--<div>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" [formControl]="employee.get('firstName')" />
+        <mat-error *ngIf="firstName.invalid">Must add a valid name</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" [formControl]="employee.get('lastName')" />
+        <mat-error *ngIf="firstName.invalid">Must add a valid name</mat-error>
+      </mat-form-field>
+    </div>
+    <div *ngIf="employee.controls['dependents'].length > 0">
+      <mat-divider [inset]="true"></mat-divider>
+      <div class="header-dependents">Dependents:</div>
+    </div>
+    <div *ngFor="let dependent of employee.controls['dependents'].controls; let dependentIndex = index" [formGroup]="dependent">
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" [formControl]="dependent.get('firstName')" />
+        <mat-error *ngIf="firstName.invalid">Must add a valid name</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" [formControl]="dependent.get('lastName')" />
+        <mat-error *ngIf="firstName.invalid">Must add a valid name</mat-error>
+      </mat-form-field>
+      <button mat-icon-button (click)="deleteDependent(dependent)" color="warn"><mat-icon>delete</mat-icon></button>
+    </div>
+    <button mat-raised-button (click)="addNewDependent()" class="new-dependent" color="primary">
+      <mat-icon>add</mat-icon>
+      Add a Dependent
+    </button>-->
+    <!--<button  [disabled]="!myForm.valid">Caluclate Benefits</button>-->
+    <!--<button mat-button type="submit">Save</button>
+    </form>-->
+  </mat-card-content>
+</mat-card>
+<button mat-button (click)="addNewEmployee()">
+  <mat-icon>add</mat-icon>
+  Add an Employee
+</button>
+
+
+<div>Edit input?/recalculate   Tests!</div>
+<div>
+  Cost of 1 year of benefits for Employee "Name" and dependents:
+</div>
+<img src="/assets/background1.png" />

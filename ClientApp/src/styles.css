@@ -1,0 +1,23 @@
+/* global styles */
+
+html, body {
+  height: 100%;
+
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+}
+
+
+app-root {
+    width: 100%;
+}
+
+app-root img {
+  height: 50px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 80px;
+}
