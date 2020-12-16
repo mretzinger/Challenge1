@@ -7,10 +7,10 @@ namespace pcty_challenge.Discounts
 {
     public class NameDiscount : IDiscount
     {
-        private Person Person { get; set; }
+        private IPerson Person { get; set; }
         private double Discount = 0.10;
 
-        public NameDiscount(Person person)
+        public NameDiscount(IPerson person)
         {
             Person = person;
         }
@@ -19,7 +19,11 @@ namespace pcty_challenge.Discounts
         public bool Applies()
         {
             //Assuming that First name gets "a" discount
-            return Person.FirstName.ToLower()[0] == 'a' ? true : false;
+            return Person.FirstName != ""
+                    ? Person.FirstName.ToLower()[0] == 'a'
+                        ? true
+                        : false
+                    : false;
         }
 
 

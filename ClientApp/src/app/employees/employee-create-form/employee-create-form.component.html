@@ -1,0 +1,38 @@
+<form [formGroup]="employeeForm" (ngSubmit)="createEmployee(employeeForm)" novalidate>
+  <div>
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" [formControl]="employeeForm.get('firstName')" />
+      <mat-error *ngIf="employeeForm.get('firstName').invalid">Must add a valid name</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput type="text" [formControl]="employeeForm.get('lastName')" />
+      <mat-error *ngIf="employeeForm.get('firstName').invalid">Must add a valid name</mat-error>
+    </mat-form-field>
+  </div>
+  <ng-container *ngIf="employeeForm.controls['dependents'].value.length">
+    <div class="header-dependents">Dependents:</div>
+
+    <div *ngFor="let dependent of employeeForm.controls['dependents']['controls']; let dependentIndex = index" [formGroup]="dependent">
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" [formControl]="dependent.get('firstName')" />
+        <mat-error *ngIf="dependent.get('firstName').invalid">Must add a valid name</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" [formControl]="dependent.get('lastName')" />
+        <mat-error *ngIf="dependent.get('firstName').invalid">Must add a valid name</mat-error>
+      </mat-form-field>
+      <button mat-icon-button (click)="deleteDependent(dependent)" color="warn"><mat-icon>delete</mat-icon></button>
+    </div>
+  </ng-container>
+  <div class="actions">
+    <button mat-raised-button type="button" (click)="addNewDependent()" class="new-dependent" color="primary">
+      <mat-icon>add</mat-icon>
+      Add a Dependent
+    </button>
+    <button mat-raised-button type="submit" class="save" color="accent">Save</button>
+  </div>
+</form>

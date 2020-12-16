@@ -2,13 +2,22 @@
   display: block;
   margin: 0 auto;
   max-width: 850px;
-  padding: 16px;
+  padding: 30px 16px;
 }
 
-mat-form-field {
-  margin-right: 30px;
-  padding: 10px 0;
-  width: 40%;
+h1 {
+    margin-top: 0;
+}
+
+.header {
+    position: relative;
+    padding: 20px 0;
+
+    &__content {
+        display: flex;
+        padding-top: 15px;
+        justify-content: space-between;
+    }
 }
 
 mat-card {
@@ -17,32 +26,16 @@ mat-card {
 
 
 .total-card {
-    position: fixed;
-    top: 195px;
-    right: 40px;
-    max-width: 300px;
-}
-
-.mat-card-header-text {
-    margin: 0;
-}
-
-.new-dependent {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-}
-
-.header-dependents {
-  font-size: 18px;
-  padding-top: 20px;
-  font-weight: 500;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 img {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: -115px;
   height: 100%;
   z-index: -1;
 }
+

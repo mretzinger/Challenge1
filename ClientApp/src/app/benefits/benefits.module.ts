@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TotalCostComponent } from './total-cost/total-cost.component';
+import { MatCardModule } from '@angular/material/card';
+import { CostCalcButtonComponent } from './cost-calc-button/cost-calc-button.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [TotalCostComponent, CostCalcButtonComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    MatCardModule,
+    MatButtonModule
+  ],
+  exports: [
+    TotalCostComponent,
+    CostCalcButtonComponent
   ]
 })
-export class BenenfitsModule { }
+export class BenefitsModule { }

@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using pcty_challenge.API.Discounts;
+using pcty_challenge.API.Plugins;
 
 namespace pcty_challenge
 {
@@ -20,12 +23,17 @@ namespace pcty_challenge
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ProjectContext>(x => x.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));//Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+
+            services.AddScoped<IBenefitsCalculator, BenefitsCalculator>();
+            services.AddScoped<ICompanyCostCalculator, CompanyCostCalculator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +58,12 @@ namespace pcty_challenge
             }
 
             app.UseRouting();
+
+            app.UseCors(
+                options => options.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            );
 
             app.UseEndpoints(endpoints =>
             {
