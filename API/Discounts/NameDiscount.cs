@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace pcty_challenge.Discounts
 {
+    //<summary>Contains methods for calculating and applying a discount</summary>
     public class NameDiscount : IDiscount
     {
         private IPerson Person { get; set; }
@@ -26,7 +27,7 @@ namespace pcty_challenge.Discounts
                     : false;
         }
 
-
+        //<summary>Sets price based on if discount applies</summary>
         public double CalculateDiscountAmount(double price)
         {
             if(Applies())

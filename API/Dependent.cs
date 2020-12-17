@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace pcty_challenge
 {
+    //<summary>Class Dependent models an employee with dependents.</summary>
     public class Dependent : IPerson
     {
         public int Id { get; set; }

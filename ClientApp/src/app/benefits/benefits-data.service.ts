@@ -16,6 +16,9 @@ export class BenefitsDataService {
 
   benefitsCost$: Observable<BenefitsCost>;
 
+  /*
+  * Updates the benefits cost state with changes
+  */
   updateBenefits(benefitsCost: BenefitsCost): void {
     this._benefitsCost$.next(benefitsCost);
   }

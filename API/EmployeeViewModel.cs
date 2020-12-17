@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace pcty_challenge.API
 {
+    //<summary>The EmployeeViewModel contains the employee information accessible by the Controller.</summary>
     public class EmployeeViewModel
     {
         private IBenefitsCalculator _calc;

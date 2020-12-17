@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace pcty_challenge.API
 {
+    //<summary>Class BenefitsCost describes the cost of benefits to a company</summary>
     public class BenefitsCost
     {
         public BenefitsCost(double original, double final)

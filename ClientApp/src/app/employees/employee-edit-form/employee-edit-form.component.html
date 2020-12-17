@@ -2,12 +2,12 @@
   <div>
     <mat-form-field>
       <mat-label>First Name</mat-label>
-      <input matInput type="text" [formControl]="employeeForm.get('firstName')" />
+      <input matInput type="text" [formControl]="employeeForm.get('firstName')" required/>
       <mat-error *ngIf="employeeForm.get('firstName').invalid">Must add a valid name</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Last Name</mat-label>
-      <input matInput type="text" [formControl]="employeeForm.get('lastName')" />
+      <input matInput type="text" [formControl]="employeeForm.get('lastName')" required/>
       <mat-error *ngIf="employeeForm.get('firstName').invalid">Must add a valid name</mat-error>
     </mat-form-field>
   </div>
@@ -17,12 +17,12 @@
   <div *ngFor="let dependent of employeeForm.controls['dependents']['controls']; let dependentIndex = index" [formGroup]="dependent">
     <mat-form-field>
       <mat-label>First Name</mat-label>
-      <input matInput type="text" [formControl]="dependent.get('firstName')" />
+      <input matInput type="text" [formControl]="dependent.get('firstName')" required/>
       <mat-error *ngIf="dependent.get('firstName').invalid">Must add a valid name</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Last Name</mat-label>
-      <input matInput type="text" [formControl]="dependent.get('lastName')" />
+      <input matInput type="text" [formControl]="dependent.get('lastName')" required/>
       <mat-error *ngIf="dependent.get('firstName').invalid">Must add a valid name</mat-error>
     </mat-form-field>
     <button mat-icon-button (click)="deleteDependent(dependent)" color="warn"><mat-icon>delete</mat-icon></button>
@@ -33,6 +33,7 @@
       <mat-icon>add</mat-icon>
       Add a Dependent
     </button>
-    <button mat-raised-button type="submit" class="save" color="accent">Save</button>
+    <div class="confirmation">{{ saveSuccess }}</div>
+    <button mat-raised-button type="submit" class="save" color="accent" [disabled]="!employeeForm.valid">Save</button>
   </div>
 </form>

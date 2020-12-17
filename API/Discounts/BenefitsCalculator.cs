@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace pcty_challenge.API.Discounts
 {
+    //<summary>The BenefitsCalculator class contains the method for calculating the cost of benefits for an employee</summary>
     public class BenefitsCalculator : IBenefitsCalculator
     {
         public double Calculate(Employee employee)

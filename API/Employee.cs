@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace pcty_challenge
 {
-    //<summary>Class <c>Employee</c> models an employee with dependents.</summary>
+    //<summary>Class Employee models an employee with dependents.</summary>
     public class Employee : IPerson
     {
         public int Id { get; set; }

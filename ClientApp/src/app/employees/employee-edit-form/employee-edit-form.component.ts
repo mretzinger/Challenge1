@@ -36,6 +36,9 @@ export class EmployeeEditFormComponent implements OnInit {
     });
   }
 
+  /*
+  * Adds an empty dependent to the employee form
+  */
   addNewDependent() {
     const dependents = this.employeeForm.get('dependents') as FormArray;
     dependents.push(this.fb.group({
@@ -44,6 +47,9 @@ export class EmployeeEditFormComponent implements OnInit {
     }));
   }
 
+  /*
+  * Removes a dependent from the employee form
+  */
   deleteDependent(dependent: FormControl) {
     const dependents = this.employeeForm.get('dependents') as FormArray;
     dependents.removeAt(dependents.controls.indexOf(dependent));
@@ -52,6 +58,9 @@ export class EmployeeEditFormComponent implements OnInit {
     });
   }
 
+  /*
+  * Saves any changes to an already existing employee
+  */
   updateEmployee(value: FormGroup) {
     this.employeeService.update(value.value).subscribe((employee: Employee) => {
       this.employeesDataService.updateEmployee(employee);

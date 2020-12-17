@@ -12,6 +12,9 @@ export class BenefitsService {
 
   constructor(private httpClient: HttpClient) { }
 
+  /*
+  * Returns total benefits cost from the API
+  */
   getCost() : Observable<BenefitsCost> {
     return this.httpClient.get<BenefitsCost>(this.API_DOMAIN + '/benefits/cost');
   }

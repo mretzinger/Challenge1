@@ -13,12 +13,23 @@
       <button mat-icon-button (click)="deleteEmployee(employee)" color="warn" class="delete-employee"><mat-icon>delete</mat-icon></button>
     </div>
     <app-employee-edit-form [employee]="employee" *ngIf="employee.id"></app-employee-edit-form>
-    <app-employee-create-form [employee]="employee" *ngIf="!employee.id"></app-employee-create-form>
-
+  </mat-expansion-panel>
+  <mat-expansion-panel *ngIf="new" [expanded]="new">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="title">
+        <div class="title__name">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="employee__actions">
+      <button mat-icon-button (click)="hideNewEmployeeForm()" color="warn" class="delete-employee"><mat-icon>delete</mat-icon></button>
+    </div>
+    <app-employee-create-form (onSaveSuccess)="hideNewEmployeeForm()"></app-employee-create-form>
   </mat-expansion-panel>
 </mat-accordion>
 <div class="actions">
-  <button mat-raised-button (click)="addNewEmployee()" color="accent">
+  <button mat-raised-button (click)="showNewEmployeeForm()" color="accent">
     <mat-icon>add</mat-icon>
     Add an Employee
   </button>

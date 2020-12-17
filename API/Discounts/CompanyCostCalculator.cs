@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace pcty_challenge
 {
+    //<summary>
+    //The CompanyCostCalculator class contains the method for calculating 
+    //the cost of employee benefits for all employees at the company.
+    //</summary>
     public class CompanyCostCalculator : ICompanyCostCalculator
     {
         private IBenefitsCalculator _calc;

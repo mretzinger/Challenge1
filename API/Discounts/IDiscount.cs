@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace pcty_challenge.Discounts
 {
-    //Describes a discount
+    //<summary>Describes a discount</summary>
     interface IDiscount
     {
         public bool Applies();

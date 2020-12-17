@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BenefitsCost } from '../../benefits/benefits';
-import { BenefitsService } from '../../benefits/benefits.service';
 import { Employee } from '../employee';
 import { EmployeesDataService } from '../employees-data.service';
 import { EmployeesService } from '../employees.service';
@@ -12,10 +10,13 @@ import { EmployeesService } from '../employees.service';
 })
 export class EmployeesListComponent implements OnInit {
   employees: Employee[] = [];
-  cost: BenefitsCost = { finalCost: 0, originalCost: 0 };
+
+  /*
+   * Whether or not to show the "add an employee" form.
+   */
+  new: boolean = false;
 
   constructor(private employeesService: EmployeesService,
-    private benefitsService: BenefitsService,
     private employeesDataService: EmployeesDataService) { }
 
   ngOnInit(): void {
@@ -28,25 +29,17 @@ export class EmployeesListComponent implements OnInit {
     });
   }
 
-  addNewEmployee() {
-    this.employeesDataService.addEmployee();
+  showNewEmployeeForm() {
+    this.new = true;
+  }
+
+  hideNewEmployeeForm() {
+    this.new = false;
   }
 
   deleteEmployee(employee : Employee) {
-    if (employee.id) {
-      this.employeesService.delete(employee.id).subscribe(() => {
-        this.employees.splice(this.employees.indexOf(employee));
-      });
-    }
-    else {
-      this.employees.splice(this.employees.indexOf(employee));
-    }
-  }
-
-  calculateCost() {
-    this.benefitsService.getCost().subscribe((cost: BenefitsCost) => {
-      this.cost = cost;
-      console.log(cost);
+    this.employeesService.delete(employee.id).subscribe(() => {
+      this.employeesDataService.deleteEmployee(employee);
     });
   }
 }

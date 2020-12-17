@@ -6,9 +6,7 @@ import { Employee } from './employee';
   providedIn: 'root'
 })
 export class EmployeesDataService {
-  private employees: Employee[] = [];
-
-  private _employees$: BehaviorSubject<Employee[]> = new BehaviorSubject(this.employees);
+  private _employees$: BehaviorSubject<Employee[]> = new BehaviorSubject([]);
 
   employees$: Observable<Employee[]>;
 
@@ -16,24 +14,28 @@ export class EmployeesDataService {
     this.employees$ = this._employees$.asObservable();
   }
 
-  addEmployee(): void {
+  /*
+  * Adds a new employee to the employees state
+  */
+  addEmployee(employee: Employee): void {
     this._employees$.next(
-      [...this._employees$.value,
-        {
-          id: "",
-          firstName: "",
-          lastName: "",
-          finalBenefitsCost: 0,
-          dependents: []
-        }
+      [
+        ...this._employees$.value,
+        employee
       ]
     )
   }
 
+  /*
+  * Updates the current employee list state with any changes
+  */
   updateEmployees(employees: Employee[]): void {
     this._employees$.next(employees);
   }
 
+  /*
+  * Updates the current employee list state with an updated employee
+  */
   updateEmployee(employee: Employee): void {
     this._employees$.next(this._employees$.value.map((data: Employee) => {
       if (data.id == employee.id) {
@@ -45,5 +47,16 @@ export class EmployeesDataService {
         return data;
       }
     }));
+  }
+
+  /*
+  * Removes an employee from the current employees state
+  */
+  deleteEmployee(employee: Employee): void {
+    var index = this._employees$.value.indexOf(employee);
+    this._employees$.next([
+      ...this._employees$.value.slice(0, index),
+      ...this._employees$.value.slice(index + 1)
+    ]);
   }
 }
